@@ -1,0 +1,861 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+@import "_mixins/breakpoints"
+
+html,
+body
+	overflow-x: hidden
+body
+	font-family: $default_font
+	font-weight: normal
+	-webkit-font-smoothing: antialiased	
+	background: $black
+	min-width: 320px
+	*
+		box-sizing: border-box
+	a
+		text-decoration: none
+		color: inherit
+		transition: all $time
+		&:hover,
+		&:focus
+			transition: all $time
+			
+@keyframes spin 
+	0% 
+		transform: rotate(0deg)
+	100% 
+		transform: rotate(360deg)
+
+@keyframes spin-reverse 
+	0% 
+		transform: rotate(0deg)
+	100% 
+		transform: rotate(-360deg)
+#loader-wrapper 
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: 12
+	overflow: hidden
+	.loader-section 
+		position: fixed
+		top: 0
+		width: 51%
+		height: 100%
+		background: #222
+		z-index: 12
+	.section-left 
+		left: 0
+		transition: all 0.7s 0.3s
+	.section-right 
+		right: 0
+		transition: all 0.7s 0.3s 
+#loader 
+	display: block
+	position: relative
+	left: 50%
+	top: 50%;
+	width: 150px
+	height: 150px
+	margin: -75px 0 0 -75px
+	border-radius: 50%
+	border: 3px solid transparent
+	border-top-color: #16a085
+	animation: spin 1.7s linear infinite
+	z-index: 13
+	&:before 
+		content: ""
+		position: absolute
+		top: 5px
+		left: 5px
+		right: 5px
+		bottom: 5px
+		border-radius: 50%
+		border: 3px solid transparent
+		border-top-color: #e74c3c
+		animation: spin-reverse .6s linear infinite
+	&:after 
+		content: ""
+		position: absolute
+		top: 15px
+		left: 15px
+		right: 15px
+		bottom: 15px
+		border-radius: 50%
+		border: 3px solid transparent
+		border-top-color: #f9c922
+    	animation: spin 1s linear infinite
+.loaded 
+	#loader 
+		opacity: 0
+		transition: all 0.3s ease-out
+	#loader-wrapper 
+		visibility: hidden
+		transform: translateY(-100%)
+		transition: all 0.3s 1s ease-out
+	.section-left 
+		transform: translateX(-100%)
+	.section-right 
+		transform: translateX(100%)
+
+
+
+
+.container
+	width: 280px
+	margin: 0 auto
+	@include xss
+		width: 335px
+	@include xs
+		width: 385px
+	@include xxss
+		width: 460px
+	@include sm
+		width: 540px
+	@include md
+		width: 730px	
+	@include mds
+		width: 800px
+	@include lg
+		width: 985px
+	@include xl
+		width: 1112px
+
+.top_menu
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 90px
+	padding: 0 20px
+	border-bottom: 1px solid $white
+	display: flex
+	justify-content: space-between
+	align-items: center
+	transition: all 0.5s
+	@include sm
+		padding: 0 50px
+	@include xxl
+		padding: 0 180px
+.top_logo
+	width: 160px
+	transition: all $time
+	@include xl
+		width: 175px
+	svg
+		width: 100%
+		height: 100%
+nav	
+	position: fixed
+	top: 0
+	right: 0
+	width: 200px
+	height: 100vh
+	padding: 20px
+	transform: translateX(100%)
+	transition: all 0.5s
+	opacity: 0
+	@include lg
+		position: relative
+		width: auto
+		height: auto
+		padding: 0
+		background: transparent
+		transform: translateX(0)
+		opacity: 1
+	ul
+		display: flex
+		flex-direction: column	
+		@include lg
+			justify-content: center
+			flex-direction: row
+		li
+			position: relative
+			margin-right: 25px
+			&:last-child
+				margin-right: 0
+			@include xl
+				margin-right: 42px
+			a
+				display: inline-block
+				color: $white
+				font-size: 16px
+				line-height: 36px							
+.nav_link_hover	
+	@include lg
+		&::after
+			content: ''
+			position: absolute
+			bottom: 0
+			display: block
+			width: 100%
+			height: 2px
+			background: $white
+			transform: scale(0)
+			transition: all 0.5s
+		&:hover,
+		&:focus
+			color: $ice_cream
+			&::after
+				transform: scale(1)	
+			
+.nav_right
+	display: flex
+	justify-content: space-between
+	position: absolute
+	right: 20px
+	transition: all 0.5s
+	@include sm
+		right: 50px
+	@include lg
+		position: relative
+		right: 0
+	.nav_search,
+	.nav_language
+		display: none
+		@include md
+			display: flex
+			align-items: center
+	.nav_language
+		position: relative
+		margin-left: 30px
+		@include xl
+			margin-left: 70px	
+	svg
+		width: 20px
+		height: auto
+	span
+		margin-left: 10px
+		color: $white
+		font-size: 16px
+		line-height: 36px
+		&:hover,
+		&:focus
+			color: $ice_cream
+.burger	
+	margin-left: 40px
+	transition: all 0.5s
+	.menu_burger
+		position: relative
+		display: block
+		width: 50px
+		height: 40px
+		cursor: pointer
+		span
+			display: block
+			width: 100%
+			height: 2px			
+			background: $white	
+			transform: translateY(19px)
+			&::before,
+			&::after
+				display: block
+				content: ''
+				transition: all $time
+				width: 100%
+				height: 2px
+				background: $white
+			&::before
+				transform: translateY(-10px)
+			&::after
+				transform: translateY(10px)					
+	@include lg
+		display: none
+.mmenu_active
+	.top_logo 
+		opacity: 0
+		@include xxss
+			opacity: 1
+	nav
+		transform: translateX(0)
+		transition: all 0.5s
+		opacity: 1
+		background: linear-gradient(to bottom right, #667eea, #744fa8)
+		ul
+			height: 100%
+			align-items: center
+			justify-content: center
+			li
+				margin-right: 0
+				margin-bottom: 10px
+	.nav_right
+		right: 220px
+		transition: all 0.5s
+	.menu_burger
+		width: 35px
+		span
+			height: 0
+			&::after
+				transform: rotate(45deg)
+			&::before
+				transform: rotate(-45deg)	
+.sticky
+	position: fixed
+	top: 0
+	left: 0
+	background: $menu_bg
+	z-index: 10
+
+header
+	min-height: 100vh
+	background: url(../img/header_bg.jpg) center bottom/cover
+	padding-bottom: 53px
+	@include xl
+		height: 800px
+		min-height: auto
+	.container,
+	.header__wrap
+		@include xl
+			height: 100%
+			min-height: auto
+.header__wrap
+	display: flex
+	flex-direction: column
+	color: $white
+	min-height: 100vh
+	@include md
+		justify-content: space-between
+		align-items: center
+		flex-direction: row
+.header__content_left
+	margin-top: 150px
+	@include md
+		width: 40%
+		max-width: 452px
+		margin-top: 0
+		margin-bottom: 33px
+	h1
+		margin-bottom: 10px
+		font-weight: bold
+		font-size: 32px
+		text-transform: uppercase
+		@include mds
+			font-size: 42px
+		@include lg
+			margin-bottom: 32px
+			font-size: 64px
+	h2		
+		margin-bottom: 24px
+		font-size: 16px
+		line-height: 24px
+		@include lg
+			font-size: 24px
+			line-height: 32px
+.more_info
+	a
+		display: flex	
+		align-items: center
+		font-size: 16px		
+		&:hover,
+		&:focus
+			.arrow
+				margin-left: 20px				
+.arrow
+	display: inline-block
+	width: 16px
+	margin-left: 10px
+	transition: all $time
+	svg
+		width: 20px
+		height: auto
+		path
+			transition: all $time
+.header__content_right
+	display: flex
+	justify-content: space-between
+	flex-wrap: wrap	
+	margin-top: 50px
+	max-width: 385px
+	margin-left: auto
+	@include md
+		margin-top: 215px
+		margin-left: 0
+		width: 48%
+		max-width: none
+	@include xl
+		margin-top: 340px
+	a
+		&:hover,
+		&:focus
+			color: $header_link_hover
+			font-weight: bold
+			.arrow
+				svg
+					path
+						fill: $header_link_hover	
+.header__item
+	width: 47%
+	padding: 12px
+	@include xss
+		padding: 15px
+	@include xl
+		padding: 20px 33px 30px 40px
+	&:nth-child(1),
+	&:nth-child(2)
+		margin-bottom: 14px
+		@include xl
+			margin-bottom: 30px
+	&:nth-child(1)
+		background-color: $blue
+	&:nth-child(2)
+		background-color: $green
+	&:nth-child(3)
+		background-color: $yellow
+	&:nth-child(4)
+		background-color: $red
+	.header__subtitl
+		margin-bottom: 15px
+		font-size: 12px
+		line-height: 16px
+		font-weight: 500
+		font-family: $Montserrat
+		@include xss
+			font-size: 14px
+			line-height: 18px
+		@include lg
+			font-size: 16px
+			line-height: 20px
+		@include xl
+			font-size: 20px
+			line-height: 27px
+	a	
+		font-size: 14px
+.side-menu
+	padding: 50px 0 20px
+	background: $blue
+	@include mds
+		padding: 75px 0
+	.side-menu__wrap
+		@include sm
+			display: flex
+			flex-wrap: wrap
+			justify-content: center
+			@include lg
+				justify-content: space-between
+	.side-menu__item
+		padding-right: 20px
+		margin-bottom: 30px
+		color: $white
+		@include sm
+			width: 45%
+		@include lg
+			margin-bottom: 50px
+		@include lg
+			margin-bottom: 0
+			width: fit-content
+	.side-menu__title
+		margin-bottom: 12px
+		font-family: $Montserrat
+		font-weight: 500
+		font-size: 24px
+		line-height: 1.3
+		@include lg
+			margin-bottom: 20px
+			font-size: 30px
+		@include lg
+			margin-bottom: 30px
+	ul,	
+		overflow: hidden
+		li
+			margin-bottom: 8px
+			@include lg
+				margin-bottom: 15px
+			a
+				font-size: 12px
+				line-height: 1.35
+				@include lg
+					font-size: 16px
+				&::after
+					background: $green
+				&:hover,
+				&:focus
+					color: $yellow
+.link_hover
+	position: relative
+	z-index: 1
+	&::after
+		position: absolute
+		bottom: -6px
+		content: ''
+		display: block
+		height: 2px
+		width: 100%
+		transition: all 0.5s
+		transform: translateX(-100%)
+	&:hover,
+	&:focus
+		&::after
+			transform: translateX(0)
+.events
+	padding: 50px 0 25px
+	background: $yellow	
+	color: $text_dark	
+	@include mds
+		padding: 75px 0 35px				
+.events__top
+	margin-bottom: 20px
+	font-family: $Montserrat
+	line-height: 1.3
+	@include xxss
+		display: flex
+		justify-content: space-between
+		align-items: center
+	@include lg
+		margin-bottom: 55px
+	h3		
+		max-width: 280px
+		margin-bottom: 10px
+		font-size: 22px
+		@include lg
+			max-width: fit-content
+			margin-bottom: 0
+		@include xl
+			font-size: 30px	
+.events__top,			
+.news__top					
+	a
+		font-size: 16px
+		@include lg
+			font-size: 21px
+		&:hover,
+		&:focus
+			text-decoration-line: underline
+	.arrow
+		svg
+			path
+				fill: $text_dark
+.events__wrap
+	display: flex
+	justify-content: space-between
+	flex-wrap: wrap	
+	@include lg
+		max-width: 800px	
+		margin: 0 auto
+	@include xl
+		max-width: 100%
+.events__item
+	width: 280px
+	overflow: hidden
+	margin-bottom: 30px
+	@include xxss
+		width: 220px
+	@include xl
+		width: 350px
+		margin-bottom: 40px
+	.events__img
+		display: block
+		margin-bottom: 20px
+		width: 100%
+		height: 192px
+		overflow: hidden
+		@include xxss
+			height: 151px
+		@include xl
+			height: 240px
+		img
+			display: block
+			width: 100%
+			transition: all $time
+		&:hover,
+		&:focus
+			img
+				transform: scale(1.1)
+	.events__date
+		margin-bottom: 8px
+		font-family: $default_font
+		font-size: 12px
+		line-height: 1.35
+		@include xxss
+			font-size: 11px
+		@include lg
+			margin-bottom: 10px
+			font-size: 14px
+	.events__link
+		display: inline-block
+		margin-bottom: 5px
+		font-weight: 500
+		font-size: 18px
+		line-height: 1.3
+		color: $red
+		@include lg
+			margin-bottom: 10px
+			font-size: 21px
+		&::after
+			background: $green
+		&:hover,
+		&:focus
+			color: $text_dark
+	.events__desc
+		font-family: $default_font
+		font-size: 14px
+		line-height: 1.35	
+		@include lg
+			font-size: 16px
+.news
+	padding: 50px 0 
+	background: $ice_cream
+	@include lg
+		padding: 75px 0 85px
+.news__wrap
+	display: flex
+	flex-direction: column-reverse
+	@include md
+		flex-direction: row
+		justify-content: space-between
+.news__left_content
+	@include xxss
+		display: flex
+		justify-content: space-between
+	@include md
+		width: 35%
+		flex-direction: column
+		justify-content: space-around
+	@include xl
+		width: 40%
+		justify-content: space-between
+	.news__left_item
+		@include xxss
+			width: 47%
+		@include md
+			width: 100%
+		@include mds
+			height: 135px
+			overflow: hidden
+		@include lg
+			height: 167px
+		@include xl
+			height: 215px
+		&:first-child
+			margin-bottom: 30px
+			@include lg
+				margin-bottom: 59px	
+	a
+		display: block	
+		width: 280px
+		@include xxss
+			width: 100%
+		@include mds	
+			&:hover,
+			&:focus				
+				transform: scale(1.1)
+		img
+			display: block
+			width: 100%		
+.news__right_content
+	margin-bottom: 50px
+	@include md
+		width: 60%
+		margin-bottom: 0
+	@include xl
+		width: 49%		
+	.news__top
+		display: flex
+		justify-content: space-between
+		align-items: center
+		margin-bottom: 30px
+		h3
+			font-size: 22px
+			font-weight: 500
+			line-height: 1.3
+			font-family: $Montserrat
+			@include lg
+				font-size: 30px
+.news__item
+	display: flex
+	justify-content: space-between
+	align-items: center
+	margin-bottom: 30px
+	&:nth-child(4)
+		margin-bottom: 0
+	&:hover,
+	&:focus
+		.news__desc
+			text-decoration: underline
+.news__item_img
+	width: 30%	
+	img
+		display: block
+		width: 100%	
+.news__item_content	
+	width: 70%
+	padding-left: 10px		
+.news__date
+	margin-bottom: 14px
+	font-size: 11px
+	line-height: 1.35
+	color: $red
+	@include xxss
+		font-size: 13px
+	@include lg
+		font-size: 16px
+.news__desc
+	font-family: $Montserrat
+	font-weight: 500	
+	font-size: 13px
+	line-height: 1.3
+	@include xxss
+		font-size: 16px	
+	@include lg
+		font-size: 21px
+.footer
+	padding: 60px 0 70px
+	background: $green
+.footer__wrap
+	@include xxss
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+.footer__column
+	@include xxss
+		width: 46%
+	@include lg
+		margin-right: 50px
+		width: fit-content
+	&:nth-child(4)
+		@include lg
+			width: 255px
+			margin-right: 0
+.footer__item
+	.footer__title
+		margin-bottom: 15px
+		font-family: $Montserrat
+		font-weight: 500
+		font-size: 18px
+		line-height: 1.3
+		color: $white
+		@include lg
+			margin-bottom: 20px
+			font-size: 21px
+	ul
+		margin-bottom: 30px
+		overflow: hidden
+		li
+			margin-bottom: 10px
+			&:hover,
+			&:focus				
+				a
+					color: $white
+	.link_hover
+		&::after
+			background: $yellow
+.footer__text
+	font-size: 14px
+	line-height: 1.35
+	color: $footer_link
+.footer__app
+	width: 160px
+	margin-bottom: 15px
+	&:last-child
+		margin-bottom: 0
+	a
+		display: block
+		opacity: 0.8
+	&:hover,
+	&:focus
+		a
+			opacity: 1
+.footer__social
+	width: 210px
+	display: flex
+	justify-content: space-between
+	align-items: center
+	margin-bottom: 50px
+	@include lg
+		width: 220px
+.youtube,
+.vk,
+.fb,
+.insta
+	display: block
+	svg
+		width: 100%
+		path
+			transition: all $time
+	
+.youtube
+	width: 35px
+	&:hover,
+	&:focus	
+		svg
+			path
+				fill: #ff0000	
+.vk
+	width: 44px
+	&:hover,
+	&:focus	
+		svg
+			path
+				fill: #4f7db3	
+.fb
+	width: 25px
+	&:hover,
+	&:focus	
+		svg
+			path
+				fill: #38539b
+.insta
+	width: 25px
+	&:hover,
+	&:focus	
+		svg
+			path
+				fill: #c02b64
+.footer__item_subscribe
+	max-width: 280px
+.subscribe
+	margin-top: 25px
+	position: relative
+	width: 100%
+	input
+		padding: 13px 60px 11px 20px
+		width: 100%
+		height: 40px
+		border: none
+		font-size: 12px
+		line-height: 1.35
+		color: $text_dark
+		&:focus
+			outline-color: $black	
+	.footer__btn
+		position: absolute
+		top: 0
+		right: 0
+		width: 40px
+		height: 40px
+		background: $red
+		cursor: pointer
+		&::after,
+		&::before			
+			content: ''
+			position: absolute
+			background: $white
+		&::after
+			top: 12px
+			left: 11px
+			width: 18px
+			height: 12px	
+		&::before
+			left: 14px
+			top: 24px
+			border: 3px solid $red
+			border-left: 3px solid $white
+			border-top: 3px solid $white
+	.main_button_hide
+		position: absolute
+		visibility: hidden
+header,
+.top_menu,
+.side-menu,
+.footer
+	*
+		&:focus
+			outline-color: $white
+.events,
+.news	
+	*
+		&:focus
+			outline-color: $black	
