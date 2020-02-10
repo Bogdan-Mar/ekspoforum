@@ -2,6 +2,10 @@ $(document).ready(function () {
     //preloader
     $('body').addClass('loaded');
 
+    //animation
+    var wow = new WOW();
+    wow.init();
+
     //fixed nav bar
     var yourNavigation = $(".top_menu");
     var stickyDiv      = "sticky";
