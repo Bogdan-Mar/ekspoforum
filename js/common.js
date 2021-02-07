@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //preloader
-    $('body').addClass('loaded');
+    $("body").addClass("loaded");
 
     //animation
     var wow = new WOW();
@@ -19,16 +19,19 @@ $(document).ready(function () {
         }
     });
 
-    $('.burger').on('click', function() {
+    //burger
+    $(".burger").on("click", function() {
         if( $("body").hasClass("mmenu_active") ) {
             $("body").removeClass("mmenu_active") ;
-        } else {
-            $("body").addClass("mmenu_active") ;
-        }             
+        } else {          
+            $("body").addClass("mmenu_active") ;          
+        }
+    });       
+        
+    $(".overlay").on("click", function(event) {
+        event = event || window.event
+
+        $("body").removeClass("mmenu_active") ;
     });
-
-
-   
-
 });
 

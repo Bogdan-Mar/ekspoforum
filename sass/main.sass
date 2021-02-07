@@ -6,6 +6,7 @@
 html,
 body
 	overflow-x: hidden
+
 body
 	font-family: $default_font
 	font-weight: normal
@@ -14,6 +15,7 @@ body
 	min-width: 320px
 	*
 		box-sizing: border-box
+
 	a
 		text-decoration: none
 		color: inherit
@@ -21,6 +23,7 @@ body
 		&:hover,
 		&:focus
 			transition: all $time
+			outline: none
 			
 @keyframes spin 
 	0% 
@@ -33,6 +36,7 @@ body
 		transform: rotate(0deg)
 	100% 
 		transform: rotate(-360deg)
+
 #loader-wrapper 
 	position: fixed
 	top: 0
@@ -41,24 +45,28 @@ body
 	height: 100%
 	z-index: 12
 	overflow: hidden
-	.loader-section 
-		position: fixed
-		top: 0
-		width: 51%
-		height: 100%
-		background: #222
-		z-index: 12
-	.section-left 
-		left: 0
-		transition: all 0.7s 0.3s
-	.section-right 
-		right: 0
-		transition: all 0.7s 0.3s 
+
+.loader-section 
+	position: fixed
+	top: 0
+	width: 51%
+	height: 100%
+	background: #222
+	z-index: 12
+
+.section-left 
+	left: 0
+	transition: all 0.7s 0.3s
+
+.section-right 
+	right: 0
+	transition: all 0.7s 0.3s 
+
 #loader 
 	display: block
 	position: relative
 	left: 50%
-	top: 50%;
+	top: 50%
 	width: 150px
 	height: 150px
 	margin: -75px 0 0 -75px
@@ -89,21 +97,22 @@ body
 		border: 3px solid transparent
 		border-top-color: #f9c922
     	animation: spin 1s linear infinite
+
 .loaded 
 	#loader 
 		opacity: 0
 		transition: all 0.3s ease-out
+
 	#loader-wrapper 
 		visibility: hidden
 		transform: translateY(-100%)
 		transition: all 0.3s 1s ease-out
+
 	.section-left 
 		transform: translateX(-100%)
+
 	.section-right 
 		transform: translateX(100%)
-
-
-
 
 .container
 	width: 280px
@@ -125,6 +134,15 @@ body
 	@include xl
 		width: 1112px
 
+.overlay
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: -100
+	background: transparent
+
 .top_menu
 	position: absolute
 	top: 0
@@ -141,14 +159,17 @@ body
 		padding: 0 50px
 	@include xxl
 		padding: 0 180px
+
 .top_logo
 	width: 160px
 	transition: all $time
 	@include xl
 		width: 175px
+
 	svg
 		width: 100%
 		height: 100%
+
 nav	
 	position: fixed
 	top: 0
@@ -159,6 +180,7 @@ nav
 	transform: translateX(100%)
 	transition: all 0.5s
 	opacity: 0
+	background: linear-gradient(to bottom right, #667eea, #744fa8)
 	@include lg
 		position: relative
 		width: auto
@@ -167,12 +189,14 @@ nav
 		background: transparent
 		transform: translateX(0)
 		opacity: 1
+
 	ul
 		display: flex
 		flex-direction: column	
 		@include lg
 			justify-content: center
 			flex-direction: row
+
 		li
 			position: relative
 			margin-right: 25px
@@ -180,6 +204,7 @@ nav
 				margin-right: 0
 			@include xl
 				margin-right: 42px
+
 			a
 				display: inline-block
 				color: $white
@@ -214,37 +239,43 @@ nav
 	@include lg
 		position: relative
 		right: 0
+
 	.nav_search,
 	.nav_language
 		display: none
 		@include md
 			display: flex
 			align-items: center
+
 	.nav_language
 		position: relative
 		margin-left: 30px
 		@include xl
 			margin-left: 70px	
+
 	svg
 		width: 20px
 		height: auto
+
 	span
-		margin-left: 10px
 		color: $white
 		font-size: 16px
 		line-height: 36px
 		&:hover,
 		&:focus
 			color: $ice_cream
+
 .burger	
 	margin-left: 40px
 	transition: all 0.5s
+
 	.menu_burger
 		position: relative
 		display: block
 		width: 50px
 		height: 40px
 		cursor: pointer
+
 		span
 			display: block
 			width: 100%
@@ -265,34 +296,46 @@ nav
 				transform: translateY(10px)					
 	@include lg
 		display: none
+
 .mmenu_active
+	.overlay
+		z-index: 4
+
 	.top_logo 
 		opacity: 0
 		@include xxss
 			opacity: 1
+
 	nav
 		transform: translateX(0)
 		transition: all 0.5s
 		opacity: 1
-		background: linear-gradient(to bottom right, #667eea, #744fa8)
+		z-index: 9
+
 		ul
 			height: 100%
 			align-items: center
 			justify-content: center
+
 			li
 				margin-right: 0
 				margin-bottom: 10px
+
 	.nav_right
 		right: 220px
 		transition: all 0.5s
+
 	.menu_burger
 		width: 35px
+		z-index: 9
+
 		span
 			height: 0
 			&::after
 				transform: rotate(45deg)
 			&::before
 				transform: rotate(-45deg)	
+
 .sticky
 	position: fixed
 	top: 0
@@ -307,11 +350,13 @@ header
 	@include xxls
 		height: 800px
 		min-height: auto
+
 	.container,
 	.header__wrap
 		@include xxls
 			height: 100%
 			min-height: auto
+
 .header__wrap
 	display: flex
 	flex-direction: column
@@ -322,6 +367,7 @@ header
 		justify-content: space-between
 		align-items: center
 		flex-direction: row
+
 .header__content_left
 	margin-top: 150px
 	@include md
@@ -329,6 +375,7 @@ header
 		max-width: 452px
 		margin-top: 0
 		margin-bottom: 33px
+
 	h1
 		margin-bottom: 10px
 		font-weight: bold
@@ -339,6 +386,7 @@ header
 		@include lg
 			margin-bottom: 32px
 			font-size: 64px
+
 	h2		
 		margin-bottom: 24px
 		font-size: 16px
@@ -346,25 +394,30 @@ header
 		@include lg
 			font-size: 24px
 			line-height: 32px
+
 .more_info
 	a
 		display: flex	
 		align-items: center
 		font-size: 16px		
+
 		&:hover,
 		&:focus
 			.arrow
-				margin-left: 20px				
+				margin-left: 20px	
+
 .arrow
 	display: inline-block
 	width: 16px
 	margin-left: 10px
 	transition: all $time
+
 	svg
 		width: 20px
 		height: auto
 		path
 			transition: all $time
+
 .header__content_right
 	display: flex
 	justify-content: space-between
@@ -379,11 +432,13 @@ header
 		max-width: none
 	@include xl
 		margin-top: 340px
+
 	a
 		&:hover,
 		&:focus
 			color: $header_link_hover
 			font-weight: bold
+
 			.arrow
 				svg
 					path
@@ -408,7 +463,8 @@ header
 		background-color: $yellow
 	&:nth-child(4)
 		background-color: $red
-	.header__subtitl
+
+	.header__subtitle
 		margin-bottom: 15px
 		font-size: 12px
 		line-height: 16px
@@ -423,20 +479,24 @@ header
 		@include xl
 			font-size: 20px
 			line-height: 27px
+
 	a	
 		font-size: 14px
+
 .side-menu
 	padding: 50px 0 20px
 	background: $blue
 	@include mds
 		padding: 75px 0
+
 	.side-menu__wrap
 		@include sm
 			display: flex
 			flex-wrap: wrap
 			justify-content: center
-			@include lg
-				justify-content: space-between
+		@include lg
+			justify-content: space-between
+
 	.side-menu__item
 		padding-right: 20px
 		margin-bottom: 30px
@@ -448,6 +508,7 @@ header
 		@include lg
 			margin-bottom: 0
 			width: fit-content
+
 	.side-menu__title
 		margin-bottom: 12px
 		font-family: $Montserrat
@@ -459,12 +520,14 @@ header
 			font-size: 30px
 		@include lg
 			margin-bottom: 30px
+
 	ul,	
 		overflow: hidden
 		li
 			margin-bottom: 8px
 			@include lg
 				margin-bottom: 15px
+
 			a
 				font-size: 12px
 				line-height: 1.35
@@ -475,6 +538,7 @@ header
 				&:hover,
 				&:focus
 					color: $yellow
+
 .link_hover
 	position: relative
 	z-index: 1
@@ -491,12 +555,14 @@ header
 	&:focus
 		&::after
 			transform: translateX(0)
+
 .events
 	padding: 50px 0 25px
 	background: $yellow	
 	color: $text_dark	
 	@include mds
-		padding: 75px 0 35px				
+		padding: 75px 0 35px	
+
 .events__top
 	margin-bottom: 20px
 	font-family: $Montserrat
@@ -507,6 +573,7 @@ header
 		align-items: center
 	@include lg
 		margin-bottom: 55px
+
 	h3		
 		max-width: 280px
 		margin-bottom: 10px
@@ -516,6 +583,7 @@ header
 			margin-bottom: 0
 		@include xl
 			font-size: 30px	
+
 .events__top,			
 .news__top					
 	a
@@ -525,10 +593,12 @@ header
 		&:hover,
 		&:focus
 			text-decoration-line: underline
+
 	.arrow
 		svg
 			path
 				fill: $text_dark
+
 .events__wrap
 	display: flex
 	justify-content: space-between
@@ -538,6 +608,7 @@ header
 		margin: 0 auto
 	@include xl
 		max-width: 100%
+
 .events__item
 	width: 280px
 	overflow: hidden
@@ -547,6 +618,7 @@ header
 	@include xl
 		width: 350px
 		margin-bottom: 40px
+
 	.events__img
 		display: block
 		margin-bottom: 20px
@@ -557,14 +629,17 @@ header
 			height: 151px
 		@include xl
 			height: 240px
+
 		img
 			display: block
 			width: 100%
 			transition: all $time
+
 		&:hover,
 		&:focus
 			img
 				transform: scale(1.1)
+
 	.events__date
 		margin-bottom: 8px
 		font-family: $default_font
@@ -575,6 +650,7 @@ header
 		@include lg
 			margin-bottom: 10px
 			font-size: 14px
+
 	.events__link
 		display: inline-block
 		margin-bottom: 5px
@@ -585,28 +661,34 @@ header
 		@include lg
 			margin-bottom: 10px
 			font-size: 21px
+
 		&::after
 			background: $green
+
 		&:hover,
 		&:focus
 			color: $text_dark
+
 	.events__desc
 		font-family: $default_font
 		font-size: 14px
 		line-height: 1.35	
 		@include lg
 			font-size: 16px
+
 .news
 	padding: 50px 0 
 	background: $ice_cream
 	@include lg
 		padding: 75px 0 85px
+
 .news__wrap
 	display: flex
 	flex-direction: column-reverse
 	@include md
 		flex-direction: row
 		justify-content: space-between
+
 .news__left_content
 	@include xxss
 		display: flex
@@ -618,6 +700,7 @@ header
 	@include xl
 		width: 40%
 		justify-content: space-between
+
 	.news__left_item
 		@include xxss
 			width: 47%
@@ -634,6 +717,7 @@ header
 			margin-bottom: 30px
 			@include lg
 				margin-bottom: 59px	
+
 	a
 		display: block	
 		width: 280px
@@ -643,21 +727,25 @@ header
 			&:hover,
 			&:focus				
 				transform: scale(1.1)
+
 		img
 			display: block
 			width: 100%		
+
 .news__right_content
 	margin-bottom: 50px
 	@include md
 		width: 60%
 		margin-bottom: 0
 	@include xl
-		width: 49%		
+		width: 49%	
+
 	.news__top
 		display: flex
 		justify-content: space-between
 		align-items: center
 		margin-bottom: 30px
+
 		h3
 			font-size: 22px
 			font-weight: 500
@@ -665,6 +753,7 @@ header
 			font-family: $Montserrat
 			@include lg
 				font-size: 30px
+
 .news__item
 	display: flex
 	justify-content: space-between
@@ -674,16 +763,21 @@ header
 		margin-bottom: 0
 	&:hover,
 	&:focus
+
 		.news__desc
 			text-decoration: underline
+
 .news__item_img
 	width: 30%	
+
 	img
 		display: block
 		width: 100%	
+
 .news__item_content	
 	width: 70%
 	padding-left: 10px		
+
 .news__date
 	margin-bottom: 14px
 	font-size: 11px
@@ -693,6 +787,7 @@ header
 		font-size: 13px
 	@include lg
 		font-size: 16px
+
 .news__desc
 	font-family: $Montserrat
 	font-weight: 500	
@@ -702,14 +797,17 @@ header
 		font-size: 16px	
 	@include lg
 		font-size: 21px
+
 .footer
 	padding: 60px 0 70px
 	background: $green
+
 .footer__wrap
 	@include xxss
 		display: flex
 		justify-content: space-between
 		flex-wrap: wrap
+
 .footer__column
 	@include xxss
 		width: 46%
@@ -720,6 +818,7 @@ header
 		@include lg
 			width: 255px
 			margin-right: 0
+
 .footer__item
 	.footer__title
 		margin-bottom: 15px
@@ -731,34 +830,43 @@ header
 		@include lg
 			margin-bottom: 20px
 			font-size: 21px
+
 	ul
 		margin-bottom: 30px
 		overflow: hidden
+
 		li
 			margin-bottom: 10px
+
 			&:hover,
 			&:focus				
 				a
 					color: $white
+
 	.link_hover
 		&::after
 			background: $yellow
+
 .footer__text
 	font-size: 14px
 	line-height: 1.35
 	color: $footer_link
+
 .footer__app
 	width: 160px
 	margin-bottom: 15px
 	&:last-child
 		margin-bottom: 0
+
 	a
 		display: block
 		opacity: 0.8
+
 	&:hover,
 	&:focus
 		a
 			opacity: 1
+
 .footer__social
 	width: 210px
 	display: flex
@@ -767,11 +875,13 @@ header
 	margin-bottom: 50px
 	@include lg
 		width: 220px
+
 .youtube,
 .vk,
 .fb,
 .insta
 	display: block
+
 	svg
 		width: 100%
 		path
@@ -784,6 +894,7 @@ header
 		svg
 			path
 				fill: #ff0000	
+
 .vk
 	width: 44px
 	&:hover,
@@ -791,6 +902,7 @@ header
 		svg
 			path
 				fill: #4f7db3	
+
 .fb
 	width: 25px
 	&:hover,
@@ -798,6 +910,7 @@ header
 		svg
 			path
 				fill: #38539b
+
 .insta
 	width: 25px
 	&:hover,
@@ -805,12 +918,15 @@ header
 		svg
 			path
 				fill: #c02b64
+
 .footer__item_subscribe
 	max-width: 280px
+
 .subscribe
 	margin-top: 25px
 	position: relative
 	width: 100%
+
 	input
 		padding: 13px 60px 11px 20px
 		width: 100%
@@ -821,6 +937,7 @@ header
 		color: $text_dark
 		&:focus
 			outline-color: $black	
+
 	.footer__btn
 		position: absolute
 		top: 0
@@ -845,9 +962,11 @@ header
 			border: 3px solid $red
 			border-left: 3px solid $white
 			border-top: 3px solid $white
+
 	.main_button_hide
 		position: absolute
 		visibility: hidden
+		
 header,
 .top_menu,
 .side-menu,
